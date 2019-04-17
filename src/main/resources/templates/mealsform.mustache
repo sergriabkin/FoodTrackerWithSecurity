@@ -1,0 +1,33 @@
+<html>
+
+<body>
+<div>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+<div>
+    <form method="post">
+        <input type="text" name="description" placeholder="Введите еду" />
+        <input type="number" name="calories" placeholder="Калории">
+        <input type="number" name="userId" placeholder="userId">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+<div>Приемы пищи</div>
+<form method="post" action="mealsfilter">
+    <input type="datetime-local" name="mealsfilter">
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+    <button type="submit">Фильтровать по дате</button>
+</form>
+{{#meals}}
+    <div>
+        <b>{{id}}</b>
+        <span>{{description}}</span>
+        <i>{{calories}}</i>
+    </div>
+{{/meals}}
+</body>
+</html>
