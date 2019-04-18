@@ -17,12 +17,10 @@ import java.util.Map;
 @Controller
 public class MainController {
     private final FoodService foodService;
-    private final UserService userService;
 
     @Autowired
-    public MainController(FoodService foodService, UserService userService) {
+    public MainController(FoodService foodService) {
         this.foodService = foodService;
-        this.userService = userService;
     }
 
     @GetMapping("/")
@@ -43,9 +41,27 @@ public class MainController {
     public String add(
             @AuthenticationPrincipal User user,
             @RequestParam Integer calories,
+            @RequestParam(required = false) String papered,
             @RequestParam String tag, Map<String, Object> model
     ) {
-        Food food = new Food(calories, tag, user);
+
+        Food food;
+
+        if (papered == null || papered.equals("none") ){
+            food = new Food(calories, tag, user);
+        }
+
+        else if (papered.equals("dish1")) {
+            food = new Food(100, "Гречка", user);
+        }
+        else if (papered.equals("dish2")) {
+            food = new Food(200, "Рис", user);
+        }
+        else if (papered.equals("dish3")) {
+            food = new Food(300, "Картошка", user);
+        }
+
+        else food = null;
 
         foodService.save(food);
 

@@ -9,12 +9,24 @@
 </div>
 <div>
     <form method="post">
+        <p>Готовые блюда:</p>
+        <select name="papered" size="4">
+            <option value="dish1">Гречка - 100 калорий</option>
+            <option value="dish2">Рис - 200 калорий</option>
+            <option value="dish3">Картошка - 300 калорий</option>
+            <option value="none">Ввести самостоятельно</option>
+        </select>
+
+        <p>Свой вариант:</p>
         <input type="number" name="calories" placeholder="Калории" />
         <input type="text" name="tag" placeholder="Прием пищи">
         <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
         <button type="submit">Добавить</button>
+
     </form>
 </div>
+
+
 <div>Приемы пищи</div>
 <form method="post" action="filter">
     <input type="text" name="filter">
