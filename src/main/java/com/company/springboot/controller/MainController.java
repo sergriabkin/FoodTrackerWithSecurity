@@ -4,6 +4,7 @@ import com.company.springboot.domain.Food;
 import com.company.springboot.domain.User;
 import com.company.springboot.repository.FoodRepo;
 import com.company.springboot.service.FoodService;
+import com.company.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -15,8 +16,14 @@ import java.util.Map;
 
 @Controller
 public class MainController {
+    private final FoodService foodService;
+//    private final UserService userService;
+
     @Autowired
-    private FoodService foodService;
+    public MainController(FoodService foodService) {
+        this.foodService = foodService;
+//        this.userService = userService;
+    }
 
     @GetMapping("/")
     public String greeting(Map<String, Object> model) {
