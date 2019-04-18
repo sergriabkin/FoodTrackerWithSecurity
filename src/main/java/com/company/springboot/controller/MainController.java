@@ -17,12 +17,12 @@ import java.util.Map;
 @Controller
 public class MainController {
     private final FoodService foodService;
-//    private final UserService userService;
+    private final UserService userService;
 
     @Autowired
-    public MainController(FoodService foodService) {
+    public MainController(FoodService foodService, UserService userService) {
         this.foodService = foodService;
-//        this.userService = userService;
+        this.userService = userService;
     }
 
     @GetMapping("/")
@@ -52,6 +52,7 @@ public class MainController {
         Iterable<Food> messages = foodService.findAll();
 
         model.put("messages", messages);
+        model.put("caloriesCount", "Вы потребили "+2000+" калорий");
 
         return "main";
     }
