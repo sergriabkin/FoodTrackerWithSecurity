@@ -1,8 +1,15 @@
 package com.company.springboot.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "food")
 public class Food {
     @Id
@@ -19,9 +26,6 @@ public class Food {
     @JoinColumn(name = "user_id")
     private User author;
 
-    public Food() {
-    }
-
     public Food(Integer calories, String tag, User user) {
         this.author = user;
         this.calories = calories;
@@ -36,31 +40,8 @@ public class Food {
         return author;
     }
 
-    public void setAuthor(User author) {
-        this.author = author;
-    }
-
     public Integer getCalories() {
         return calories;
     }
 
-    public void setCalories(Integer calories) {
-        this.calories = calories;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getTag() {
-        return tag;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag;
-    }
 }
