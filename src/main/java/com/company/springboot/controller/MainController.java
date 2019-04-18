@@ -66,9 +66,17 @@ public class MainController {
         foodService.save(food);
 
         Iterable<Food> messages = foodService.findAll();
-
         model.put("messages", messages);
-        model.put("caloriesCount", "Вы потребили "+foodService.caloriesCount(user)+" калорий");
+
+        int caloriesCount = foodService.caloriesCount(user);
+        model.put("caloriesCount", "Вы потребили "+caloriesCount+" калорий");
+
+        int caloriesNorm = 2000;
+        int result = caloriesCount - caloriesNorm;
+        String review = result > 0 ?
+                "Внимание! Вы потребили на "+result+" калорий больше нормы!" :
+                "можно потребить еще " + Math.abs(result) + " калорий";
+        model.put("review", review);
 
         return "main";
     }

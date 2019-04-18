@@ -9,6 +9,7 @@
 </div>
 <div>
     <form method="post">
+
         <p>Готовые блюда:</p>
         <select name="papered" size="4">
             <option value="dish1">Гречка - 100 калорий</option>
@@ -27,7 +28,7 @@
 </div>
 
 
-<div>Приемы пищи</div>
+<div>Все приемы пищи:</div>
 <form method="post" action="filter">
     <input type="text" name="filter">
     <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
@@ -35,15 +36,15 @@
 </form>
 {{#messages}}
     <div>
-        <b>{{id}}</b>
-        <span>{{calories}}</span>
-        <i>{{tag}}</i>
         <strong>{{authorName}}</strong>
+        <i>{{tag}}</i>
+        <span>{{calories}}</span>
     </div>
 {{/messages}}
 
 {{#caloriesCount}}
-<b>{{caloriesCount}}</b>
+    <b>{{caloriesCount}}</b> <br>
+    <b>{{review}}</b> <br>
 {{/caloriesCount}}
 
 </body>
