@@ -1,6 +1,7 @@
 package com.company.springboot.service;
 
 import com.company.springboot.domain.Food;
+import com.company.springboot.domain.User;
 import com.company.springboot.repository.FoodRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,18 @@ public class FoodServiceImpl implements FoodService {
     @Override
     public Iterable<Food> findByTag(String filter) {
         return repo.findByTag(filter);
+    }
+
+    @Override
+    public int caloriesCount(User user){
+        int result = 0;
+        for (Food food: repo.findAll()
+             ) {
+            if (food.getAuthor().getUsername().equals(user.getUsername())){
+                result += food.getCalories();
+            }
+        }
+        return result;
+
     }
 }

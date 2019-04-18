@@ -8,7 +8,10 @@ public class Food {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Column
     private Integer calories;
+
+    @Column
     private String tag;
 
     @ManyToOne(fetch = FetchType.EAGER)

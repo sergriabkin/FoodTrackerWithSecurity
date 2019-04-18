@@ -1,5 +1,6 @@
 package com.company.springboot.service;
 
+import com.company.springboot.domain.Food;
 import com.company.springboot.domain.User;
 import com.company.springboot.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,4 +31,5 @@ public class UserServiceImpl implements UserService {
     public User save(User user) {
         return userRepo.save(user);
     }
+
 }

@@ -52,7 +52,7 @@ public class MainController {
         Iterable<Food> messages = foodService.findAll();
 
         model.put("messages", messages);
-        model.put("caloriesCount", "Вы потребили "+2000+" калорий");
+        model.put("caloriesCount", "Вы потребили "+foodService.caloriesCount(user)+" калорий");
 
         return "main";
     }
