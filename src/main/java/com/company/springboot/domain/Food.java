@@ -3,6 +3,7 @@ package com.company.springboot.domain;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "food")
 public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
