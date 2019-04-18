@@ -1,4 +1,4 @@
-package com.company.springboot.repository;
+package com.company.springboot.repository.additional;
 
 import com.company.springboot.entity.Dish;
 import org.springframework.data.jpa.repository.JpaRepository;

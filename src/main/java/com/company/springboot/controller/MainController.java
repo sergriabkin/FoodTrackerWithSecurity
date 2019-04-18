@@ -3,6 +3,8 @@ package com.company.springboot.controller;
 import com.company.springboot.domain.Food;
 import com.company.springboot.domain.User;
 import com.company.springboot.repository.FoodRepo;
+import com.company.springboot.service.FoodService;
+import com.company.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -14,8 +16,12 @@ import java.util.Map;
 
 @Controller
 public class MainController {
+    private final FoodService foodService;
+
     @Autowired
-    private FoodRepo foodRepo;
+    public MainController(FoodService foodService) {
+        this.foodService = foodService;
+    }
 
     @GetMapping("/")
     public String greeting(Map<String, Object> model) {
@@ -24,7 +30,7 @@ public class MainController {
 
     @GetMapping("/main")
     public String main(Map<String, Object> model) {
-        Iterable<Food> messages = foodRepo.findAll();
+        Iterable<Food> messages = foodService.findAll();
 
         model.put("messages", messages);
 
@@ -35,15 +41,42 @@ public class MainController {
     public String add(
             @AuthenticationPrincipal User user,
             @RequestParam Integer calories,
+            @RequestParam(required = false) String papered,
             @RequestParam String tag, Map<String, Object> model
     ) {
-        Food food = new Food(calories, tag, user);
 
-        foodRepo.save(food);
+        Food food;
 
-        Iterable<Food> messages = foodRepo.findAll();
+        if (papered == null || papered.equals("none") ){
+            food = new Food(calories, tag, user);
+        }
 
+        else if (papered.equals("dish1")) {
+            food = new Food(100, "Гречка", user);
+        }
+        else if (papered.equals("dish2")) {
+            food = new Food(200, "Рис", user);
+        }
+        else if (papered.equals("dish3")) {
+            food = new Food(300, "Картошка", user);
+        }
+
+        else food = null;
+
+        foodService.save(food);
+
+        Iterable<Food> messages = foodService.findAll();
         model.put("messages", messages);
+
+        int caloriesCount = foodService.caloriesCount(user);
+        model.put("caloriesCount", "Вы потребили "+caloriesCount+" калорий");
+
+        int caloriesNorm = 2000;
+        int result = caloriesCount - caloriesNorm;
+        String review = result > 0 ?
+                "Внимание! Вы потребили на "+result+" калорий больше нормы!" :
+                "можно потребить еще " + Math.abs(result) + " калорий";
+        model.put("review", review);
 
         return "main";
     }
@@ -53,9 +86,9 @@ public class MainController {
         Iterable<Food> messages;
 
         if (filter != null && !filter.isEmpty()) {
-            messages = foodRepo.findByTag(filter);
+            messages = foodService.findByTag(filter);
         } else {
-            messages = foodRepo.findAll();
+            messages = foodService.findAll();
         }
 
         model.put("messages", messages);

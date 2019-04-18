@@ -1,14 +1,13 @@
-package com.company.springboot.controller;
+package com.company.springboot.controller.additional;
 
 import com.company.springboot.entity.Meal;
-import com.company.springboot.service.MealService;
+import com.company.springboot.service.additional.MealService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;

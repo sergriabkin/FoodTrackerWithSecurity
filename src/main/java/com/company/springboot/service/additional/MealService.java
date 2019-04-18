@@ -1,4 +1,4 @@
-package com.company.springboot.service;
+package com.company.springboot.service.additional;
 
 import com.company.springboot.entity.Dish;
 import com.company.springboot.entity.Meal;
