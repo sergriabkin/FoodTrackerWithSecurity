@@ -3,6 +3,7 @@ package com.company.springboot.controller;
 import com.company.springboot.domain.Food;
 import com.company.springboot.domain.User;
 import com.company.springboot.repository.FoodRepo;
+import com.company.springboot.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,7 @@ import java.util.Map;
 @Controller
 public class MainController {
     @Autowired
-    private FoodRepo foodRepo;
+    private FoodService foodService;
 
     @GetMapping("/")
     public String greeting(Map<String, Object> model) {
@@ -24,7 +25,7 @@ public class MainController {
 
     @GetMapping("/main")
     public String main(Map<String, Object> model) {
-        Iterable<Food> messages = foodRepo.findAll();
+        Iterable<Food> messages = foodService.findAll();
 
         model.put("messages", messages);
 
@@ -39,9 +40,9 @@ public class MainController {
     ) {
         Food food = new Food(calories, tag, user);
 
-        foodRepo.save(food);
+        foodService.save(food);
 
-        Iterable<Food> messages = foodRepo.findAll();
+        Iterable<Food> messages = foodService.findAll();
 
         model.put("messages", messages);
 
@@ -53,9 +54,9 @@ public class MainController {
         Iterable<Food> messages;
 
         if (filter != null && !filter.isEmpty()) {
-            messages = foodRepo.findByTag(filter);
+            messages = foodService.findByTag(filter);
         } else {
-            messages = foodRepo.findAll();
+            messages = foodService.findAll();
         }
 
         model.put("messages", messages);

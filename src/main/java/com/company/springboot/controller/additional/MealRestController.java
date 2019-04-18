@@ -1,8 +1,8 @@
-package com.company.springboot.controller;
+package com.company.springboot.controller.additional;
 
 import com.company.springboot.entity.Dish;
 import com.company.springboot.entity.Meal;
-import com.company.springboot.service.MealService;
+import com.company.springboot.service.additional.MealService;
 import com.company.springboot.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

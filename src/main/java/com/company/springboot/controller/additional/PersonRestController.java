@@ -1,8 +1,8 @@
-package com.company.springboot.controller;
+package com.company.springboot.controller.additional;
 
 import com.company.springboot.entity.Person;
 import com.company.springboot.entity.Phone;
-import com.company.springboot.service.PersonService;
+import com.company.springboot.service.additional.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

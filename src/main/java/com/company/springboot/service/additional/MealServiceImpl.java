@@ -1,19 +1,17 @@
-package com.company.springboot.service;
+package com.company.springboot.service.additional;
 
 import com.company.springboot.entity.Dish;
 import com.company.springboot.entity.Meal;
 import com.company.springboot.entity.Person;
-import com.company.springboot.repository.DishRepository;
-import com.company.springboot.repository.MealRepository;
-import com.company.springboot.repository.PersonRepository;
+import com.company.springboot.repository.additional.DishRepository;
+import com.company.springboot.repository.additional.MealRepository;
+import com.company.springboot.repository.additional.PersonRepository;
 import com.company.springboot.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Matcher;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 

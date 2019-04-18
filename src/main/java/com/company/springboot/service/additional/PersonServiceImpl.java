@@ -1,9 +1,9 @@
-package com.company.springboot.service;
+package com.company.springboot.service.additional;
 
 import com.company.springboot.entity.Person;
 import com.company.springboot.entity.Phone;
-import com.company.springboot.repository.PersonRepository;
-import com.company.springboot.repository.PhoneRepository;
+import com.company.springboot.repository.additional.PersonRepository;
+import com.company.springboot.repository.additional.PhoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;

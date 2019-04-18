@@ -1,4 +1,4 @@
-package com.company.springboot.repository;
+package com.company.springboot.repository.additional;
 
 import com.company.springboot.entity.Phone;
 import org.springframework.data.jpa.repository.JpaRepository;
